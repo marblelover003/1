@@ -57,7 +57,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > 8192) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
@@ -109,7 +109,7 @@ HTMLActuator.prototype.updateScore = function (score) {
   var difference = score - this.score;
   this.score = score;
 
-  this.scoreContainer.textContent = this.score;
+  this.scoreContainer.textContent = (Math.round(this.score * 100) / 100).toLocaleString();
 
   if (difference > 0) {
     var addition = document.createElement("div");
